@@ -1,40 +1,36 @@
-<?PHP
-header("Content-Type: text/html; charset=utf8");
-if(!isset($_POST["submit"])){
-    exit("ERROR!");
-}//检测是否有submit操作
-
-include('connect.php');//链接数据库
-$name = $_POST['name'];//post获得用户名表单值
-$passowrd = $_POST['password'];//post获得用户密码单值
-
-if ($name && $passowrd){//如果用户名和密码都不为空
-    $sql = "select * from user where username = '$name' and password='$passowrd'";//检测数据库是否有对应的username和password的sql
-    $result = mysqli_query($sql);//执行sql
-    $rows=mysqli_num_rows($result);//返回一个数值
-    if($rows){//0 false 1 true
-        header("refresh:0;url=welcome.html");//如果成功跳转至welcome.html页面
-        exit;
-    }else{
-        echo "User name or password is wrong!";
-        echo "
-          <script>
-              setTimeout(function(){window.location.href='login.html';},1000);
-          </script>
- 
-        ";//如果错误使用js 1秒后跳转到登录页面重试;
+<?php
+if(isset($_POST["submit"]) && $_POST["submit"] == "LOGIN")
+{
+    $user = $_POST["username"];
+    $psw = $_POST["password"];
+    if($user == "" || $psw == "")
+    {
+        echo "<script>alert('Make sure the information is completed!'); history.go(-1);</script>";
     }
-
-
-}else{//如果用户名或密码有空
-    echo "Not completed!!!";
-    echo "
-           <script>
-              setTimeout(function(){window.location.href='login.html';},1000);
-           </script>";
-
-    //如果错误使用js 1秒后跳转到登录页面重试;
+    else
+    {
+        $con=mysqli_connect("localhost","root","753951");
+        mysqli_select_db($con,"sys");
+        mysqli_query($con,"set names 'gbk'");
+        $sql = "select username,password from user where username = '$_POST[username]' and password = '$_POST[password]'";
+        $result = mysqli_query($con,$sql);
+        $num = mysqli_num_rows($result);
+        if($num)
+        {
+            $row = mysqli_fetch_array($result);
+            echo $row[0];//将数据以索引方式储存在数组中
+            header("refresh:0;url=welcome.html");//如果成功跳转至welcome.html页面
+            exit;
+        }
+        else
+        {
+            echo "<script>alert('Wrong username or password,please check or register.');history.go(-1);</script>";
+        }
+    }
+}
+else
+{
+    echo "<script>alert('Submit not successful!'); history.go(-1);</script>";
 }
 
-mysqli_close();//关闭数据库
 ?>
