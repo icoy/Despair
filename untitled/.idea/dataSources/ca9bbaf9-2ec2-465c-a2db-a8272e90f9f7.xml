@@ -5459,7 +5459,7 @@
     </column>
     <column id="833" parent="69" name="password">
       <Position>3</Position>
-      <DataType>varchar(40)|0</DataType>
+      <DataType>varchar(80)|0</DataType>
     </column>
     <key id="834" parent="69" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>

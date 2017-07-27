@@ -1,10 +1,4 @@
-
 <!DOCTYPE html>
-
-<?php
-session_start();
-?>
-
 <html>
 <head>
     <title>File Upload</title>
@@ -21,17 +15,13 @@ session_start();
 <div class="main">
     <div class="login">
         <h1>File Upload</h1>
-
         <div class="inset">
             <!--start-main-->
             <form method="post" action="upload-op.php" enctype="multipart/form-data">
                 <table>
                     <div>
-                        <h2>
-                            <?php
-                            echo 'Username:';echo $_SESSION['name'];
-                            ?>
-                        </h2>
+                        <h2>File Upload</h2>
+                        <span><label> Welcome</label></span>
                     </div>
                     <span><label>File name</label></span>
                     <span><input type="file" name="myFile"/>

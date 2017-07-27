@@ -1,4 +1,5 @@
 <?php
+Session_start();
 
 include 'passwordHash.php';//
 
@@ -6,7 +7,6 @@ if(isset($_POST["submit"]) && $_POST["submit"] == "LOGIN")
 {
     $user = $_POST["username"];
     $psw = $_POST["password"];
-
 
     if($user == "" || $psw == "")
     {
@@ -26,8 +26,9 @@ if(isset($_POST["submit"]) && $_POST["submit"] == "LOGIN")
         {
             $row = mysqli_fetch_array($result);
             echo $row[0];//将数据以索引方式储存在数组中
-            header("refresh:0;url=welcome.html");
-            mysqli_close($con);//如果成功跳转至welcome.html页面
+            $_SESSION["name"]=$user;
+            header("refresh:0;url=main.php");
+            mysqli_close($con);//如果成功跳转至upload.html页面
             exit;
         }
         else
