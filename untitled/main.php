@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <?php
@@ -15,6 +14,7 @@ session_start();
     <!--webfonts-->
     <link href='//fonts.googleapis.com/css?family=Nixie+One' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
     <!--//webfonts-->
 </head>
 <body>
@@ -36,10 +36,12 @@ session_start();
                     <span><label>File name</label></span>
                     <span><input type="file" name="myFile"/>
                     <span><label>File Intro</label></span>
-                    <textarea name="fileintro">
-                    </textarea>
+
                     <input type="submit" value="submit"/>
+
                 </table>
+                    <div><a href="download.php">View Files</a></div>
+
             </form>
         </div>
     </div>
@@ -52,4 +54,5 @@ session_start();
 </div>
 <!--//end-copyright-->
 </body>
+
 </html>

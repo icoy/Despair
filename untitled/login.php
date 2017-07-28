@@ -27,6 +27,13 @@ if(isset($_POST["submit"]) && $_POST["submit"] == "LOGIN")
             $row = mysqli_fetch_array($result);
             echo $row[0];//将数据以索引方式储存在数组中
             $_SESSION["name"]=$user;
+            $user_path=$_SERVER['DOCUMENT_ROOT']."/upload".$username;
+
+            if(!file_exists($user_path))
+            {
+                mkdir($user_path);
+            }
+            $_SESSION['path'] = $user_path;
             header("refresh:0;url=main.php");
             mysqli_close($con);//如果成功跳转至upload.html页面
             exit;
